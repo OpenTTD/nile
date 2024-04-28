@@ -2,7 +2,7 @@
 import clsx from "clsx";
 import React from "react";
 import Link from 'next/link';
-import { Anchor, Box, Group, LoadingOverlay, NavLink, Table, Text, rem } from "@mantine/core";
+import { Anchor, AppShell, Box, Group, LoadingOverlay, NavLink, Table, Text, rem } from "@mantine/core";
 import { IconListSearch } from "@tabler/icons-react";
 import { LanguageContext } from "@/providers/LanguageProvider";
 import { LayoutCommon } from "@/components/LayoutCommon";
@@ -22,13 +22,13 @@ const NavigationItem = ({ id, name, entries }: { id: string, name: string, entri
 
 const Navigation = ({ children }: { children: React.ReactNode }) => {
   return (
-    <Box>
+    <AppShell.Section>
       <Group mb="md">
         <IconListSearch style={{ width: rem(18), height: rem(18) }} stroke={1.5} />
         <Text>Table of contents</Text>
       </Group>
       {children}
-    </Box>
+    </AppShell.Section>
   );
 }
 
