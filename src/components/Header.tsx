@@ -34,9 +34,23 @@ export const Header = () => {
         )}
 
         {pathname.startsWith("/language/") && (
-          <Button component={Link} variant="subtle" radius="xl" size="xs" href={`/language/${language.language}`}>
-            All Projects
-          </Button>
+          <Menu>
+            <Menu.Target>
+              <Button variant="subtle" radius="xl" size="xs" rightSection={<IconChevronDown size={14} />}>
+                All projects
+              </Button>
+            </Menu.Target>
+            <Menu.Dropdown>
+              <Menu.Item component={Link} href={`/language/${language.language}`}>
+                All projects
+              </Menu.Item>
+              {Object.keys(config.projects ?? {}).map((key) => (
+                <Menu.Item key={key} component={Link} href={`/translation/${key}/${language.language}`}>
+                  {config.projects?.[key]?.name ?? ""}
+                </Menu.Item>
+              ))}
+            </Menu.Dropdown>
+          </Menu>
         )}
 
         {pathname.startsWith("/language/") && (
@@ -80,9 +94,23 @@ export const Header = () => {
         )}
 
         {pathname.startsWith("/project/") && (
-          <Button component={Link} variant="subtle" radius="xl" size="xs" href={`/project/${project.project}`}>
-            All languages
-          </Button>
+          <Menu>
+            <Menu.Target>
+              <Button variant="subtle" radius="xl" size="xs" rightSection={<IconChevronDown size={14} />}>
+                All languages
+              </Button>
+            </Menu.Target>
+            <Menu.Dropdown>
+              <Menu.Item component={Link} href={`/project/${project.project}`}>
+                All languages
+              </Menu.Item>
+              {Object.keys(config.languages ?? {}).map((key) => (
+                <Menu.Item key={key} component={Link} href={`/translation/${project.project}/${key}`}>
+                  {config.languages?.[key]?.name ?? ""} ({key})
+                </Menu.Item>
+              ))}
+            </Menu.Dropdown>
+          </Menu>
         )}
 
         {(pathname.startsWith("/translation/") || pathname.startsWith("/string/")) && (
