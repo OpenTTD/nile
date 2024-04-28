@@ -14,10 +14,10 @@ export const Listing = () => {
   const [invalidKeys, setInvalidKeys] = React.useState<string[]>([]);
 
   React.useEffect(() => {
-    if (language.base === undefined || language.strings === undefined) return;
+    if (language.current.base === undefined || language.current.strings === undefined) return;
 
-    setOutdatedKeys(Object.keys(language.strings).filter(key => language.base?.[key].version !== language.strings?.[key].version));
-    setMissingKeys(Object.keys(language.base).filter(key => language.strings?.[key] === undefined));
+    setOutdatedKeys(Object.keys(language.current.strings).filter(key => language.current.base?.[key].version !== language.current.strings?.[key].version));
+    setMissingKeys(Object.keys(language.current.base).filter(key => language.current.strings?.[key] === undefined));
 
     if (validator.validator === undefined) return;
 
@@ -28,11 +28,11 @@ export const Listing = () => {
     }
 
     const invalidKeys = [];
-    for (const key in language.strings) {
-      const base = language.base[key].cases["default"];
+    for (const key in language.current.strings) {
+      const base = language.current.base[key].cases["default"];
 
-      for (const tcase in language.strings[key].cases) {
-        const translation = language.strings[key].cases[tcase];
+      for (const tcase in language.current.strings[key].cases) {
+        const translation = language.current.strings[key].cases[tcase];
         if (validator.validator.validate(languageConfig, base, tcase, translation) !== null) {
           invalidKeys.push(key);
         }

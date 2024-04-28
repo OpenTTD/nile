@@ -6,7 +6,7 @@ import { Breadcrumbs, Button, Group, Menu } from "@mantine/core";
 import { IconChevronDown, IconDownload } from "@tabler/icons-react";
 
 
-export const Header = ({setLanguage} : {setLanguage: (language: string) => void}) => {
+export const Header = () => {
   const language = React.useContext(LanguageContext);
   const [project, setProject] = React.useState("OpenTTD");
 
@@ -26,12 +26,12 @@ export const Header = ({setLanguage} : {setLanguage: (language: string) => void}
         </Menu>
         <Menu>
           <Menu.Target>
-          <Button variant="subtle" radius="xl" size="xs" rightSection={<IconChevronDown size={14} />}>{language.displayName}</Button>
+          <Button variant="subtle" radius="xl" size="xs" rightSection={<IconChevronDown size={14} />}>{language.current.language && language.languages[language.current.language].name}</Button>
           </Menu.Target>
           <Menu.Dropdown>
-            <Menu.Item onClick={() => setLanguage("nl_NL")}>Dutch</Menu.Item>
-            <Menu.Item onClick={() => setLanguage("de_DE")}>German</Menu.Item>
-            <Menu.Item onClick={() => setLanguage("la_VA")}>Latin</Menu.Item>
+            {Object.keys(language.languages ?? {}).map((key) => (
+              <Menu.Item key={key} onClick={() => language.changeLanguage(key)}>{language.languages?.[key]?.name ?? ""}</Menu.Item>
+            ))}
           </Menu.Dropdown>
         </Menu>
       </Breadcrumbs>

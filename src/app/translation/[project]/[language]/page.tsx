@@ -1,33 +1,32 @@
-import React from "react";
-
-import { Header } from "@/components/Header";
+import { Page } from "@/components/Page";
 import { LanguageProvider } from "@/components/LanguageProvider";
-import { Listing } from "@/components/Listing";
-import { AppShell, Container } from "@mantine/core";
+import React from "react";
+import { getNileConfig } from "@/static/NileConfig";
 
-export default function Home() {
+export default async function Home() {
+  const nileConfig = await getNileConfig();
+
   return (
     <main>
-      Blub
+      <LanguageProvider languages={nileConfig.languages}>
+        <Page />
+      </LanguageProvider>
     </main>
   );
 }
 
 export const generateStaticParams = async () => {
-  const response = await fetch(`${process.env.CONFIG_STORAGE}/projects.json`);
-  const projects = await response.json();
+  const nileConfig = await getNileConfig();
 
   const entries = [];
 
-  for (const projectName of projects) {
-    const response = await fetch(`${process.env.CONFIG_STORAGE}/projects/${projectName}.json`);
-    const project = await response.json();
-
-    entries.push(...project.languages.map((language: string) => ({
-      project: projectName,
-      language: language,
-    })));
-
+  for (const [projectName, projectInfo] of Object.entries(nileConfig.projects)) {
+    for (const language of projectInfo.languages) {
+      entries.push({
+        project: projectName,
+        language: language,
+      });
+    }
   }
 
   return entries;
