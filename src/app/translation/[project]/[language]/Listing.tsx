@@ -51,7 +51,7 @@ const ListingItemRef = ({ items, id, name }: { items?: string[], id: string, nam
         {length !== 0 && <Table.Tbody>
           {items?.map((key) => (
             <Table.Tr key={key}>
-              <Table.Td><Anchor size="sm" component={Link} href={`/string/${project.project}/${language.language}?id=${key}`}>{key}</Anchor></Table.Td>
+              <Table.Td><Anchor size="sm" component={Link} href={`/string/${project.project}/${language.language}#id=${key}`}>{key}</Anchor></Table.Td>
             </Table.Tr>
           ))}
         </Table.Tbody>}
