@@ -25,7 +25,7 @@ export const LanguageProvider = ({ children, language }: { children: React.React
         displayName: language.charAt(0).toUpperCase() + language.slice(1),
     }));
 
-    fetch("english.json").then((response) => {
+    fetch(`${process.env.NEXT_PUBLIC_DATA_STORAGE}/openttd-vanilla/base.json`).then((response) => {
         return response.json();
     }).then((data) => {
         setLanguageData((prev) => ({
@@ -34,7 +34,7 @@ export const LanguageProvider = ({ children, language }: { children: React.React
         }));
     });
 
-    fetch(`${language}.json`).then((response) => {
+    fetch(`${process.env.NEXT_PUBLIC_DATA_STORAGE}/openttd-vanilla/${language}.json`).then((response) => {
         return response.json();
     }).then((data) => {
         setLanguageData((prev) => ({

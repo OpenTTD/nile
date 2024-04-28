@@ -1,6 +1,6 @@
 import React from "react";
 
-import type { init, validate } from "validator";
+import type { init, validate } from "nile-validator";
 
 interface WasmValidator {
   init: typeof init;
@@ -18,7 +18,7 @@ export const ValidatorProvider = ({ children } : { children: React.ReactNode }) 
   const [validator, setValidator] = React.useState<Validator>({});
 
   React.useEffect(() => {
-    import("validator").then((newValidator) => {
+    import("nile-validator").then((newValidator) => {
       newValidator.init();
 
       setValidator((prev) => {

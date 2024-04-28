@@ -21,13 +21,19 @@ export const Listing = () => {
 
     if (validator.validator === undefined) return;
 
+    const languageConfig = {
+      cases: [],
+      genders: [],
+      plural_count: 1,
+    }
+
     const invalidKeys = [];
     for (const key in language.strings) {
       const base = language.base[key].cases["default"];
 
       for (const tcase in language.strings[key].cases) {
         const translation = language.strings[key].cases[tcase];
-        if (validator.validator.validate(base, tcase, translation) !== undefined) {
+        if (validator.validator.validate(languageConfig, base, tcase, translation) !== null) {
           invalidKeys.push(key);
         }
       }

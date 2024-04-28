@@ -8,7 +8,7 @@ import { Listing } from "@/components/Listing";
 import { AppShell, Container } from "@mantine/core";
 
 export default function Home() {
-  const [language, setLanguage] = React.useState("dutch");
+  const [language, setLanguage] = React.useState("nl_NL");
 
   return (
     <main>

@@ -29,9 +29,9 @@ export const Header = ({setLanguage} : {setLanguage: (language: string) => void}
           <Button variant="subtle" radius="xl" size="xs" rightSection={<IconChevronDown size={14} />}>{language.displayName}</Button>
           </Menu.Target>
           <Menu.Dropdown>
-            <Menu.Item onClick={() => setLanguage("dutch")}>Dutch</Menu.Item>
-            <Menu.Item onClick={() => setLanguage("german")}>German</Menu.Item>
-            <Menu.Item onClick={() => setLanguage("latin")}>Latin</Menu.Item>
+            <Menu.Item onClick={() => setLanguage("nl_NL")}>Dutch</Menu.Item>
+            <Menu.Item onClick={() => setLanguage("de_DE")}>German</Menu.Item>
+            <Menu.Item onClick={() => setLanguage("la_VA")}>Latin</Menu.Item>
           </Menu.Dropdown>
         </Menu>
       </Breadcrumbs>

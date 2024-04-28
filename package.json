@@ -1,5 +1,5 @@
 {
-  "name": "webtranslator",
+  "name": "nile",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -16,9 +16,9 @@
     "@mantine/nprogress": "^7",
     "@tabler/icons-react": "^3",
     "next": "^14",
+    "nile-validator": "file:../nile-validator/pkg",
     "react": "^18",
-    "react-dom": "^18",
-    "validator": "file:../nile-validator/pkg"
+    "react-dom": "^18"
   },
   "devDependencies": {
     "@types/node": "^20",
