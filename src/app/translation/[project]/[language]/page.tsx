@@ -1,8 +1,9 @@
-import { Page } from "@/components/Page";
-import { LanguageProvider } from "@/components/LanguageProvider";
 import React from "react";
 import { getNileConfig } from "@/static/NileConfig";
+import { LanguageProvider } from "@/components/LanguageProvider";
 import { ValidatorProvider } from "@/components/ValidatorProvider";
+import { LayoutCommon } from "@/components/LayoutCommon";
+import { Listing } from "@/components/Listing";
 
 export default async function Home({ params }: { params: { project: string, language: string } }) {
   const { project, language } = params;
@@ -12,7 +13,9 @@ export default async function Home({ params }: { params: { project: string, lang
     <main>
       <ValidatorProvider>
         <LanguageProvider languages={nileConfig.languages} initialLanguage={language}>
-          <Page />
+          <LayoutCommon>
+            <Listing />
+          </LayoutCommon>
         </LanguageProvider>
       </ValidatorProvider>
     </main>

@@ -30,7 +30,9 @@ export const LanguageProvider = ({ languages, initialLanguage, children }: { lan
   const [language, setLanguage] = React.useState(initialLanguage);
   const [languageData, setLanguageData] = React.useState<LanguageData>({
     languages: languages,
-    current: {},
+    current: {
+      language,
+    },
     changeLanguage: (language: string) => setLanguage(language),
   });
 
