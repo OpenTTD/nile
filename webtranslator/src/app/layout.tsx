@@ -1,9 +1,8 @@
 import React from "react";
 import type { Metadata } from "next";
-import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter';
-import { CssBaseline } from "@mui/material";
-import { ThemeDarkLightProvider } from "@/components/ThemeProvider";
 import "./globals.css";
+import '@mantine/core/styles.css';
+import { ColorSchemeScript, MantineProvider } from '@mantine/core';
 
 export const metadata: Metadata = {
   title: "OpenTTD Web Translator",
@@ -17,13 +16,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <ColorSchemeScript />
+      </head>
       <body>
-        <AppRouterCacheProvider>
-          <ThemeDarkLightProvider>
-            <CssBaseline />
-            {children}
-          </ThemeDarkLightProvider>
-        </AppRouterCacheProvider>
+        <MantineProvider defaultColorScheme="auto">
+          {children}
+        </MantineProvider>
       </body>
     </html>
   );

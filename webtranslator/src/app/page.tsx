@@ -1,24 +1,29 @@
 "use client";
+
+import React from "react";
+
 import { Header } from "@/components/Header";
 import { LanguageProvider } from "@/components/LanguageProvider";
 import { Listing } from "@/components/Listing";
-import { ValidatorProvider } from "@/components/ValidatorProvider";
-import { Container } from "@mui/material";
-import React from "react";
+import { AppShell, Container } from "@mantine/core";
 
 export default function Home() {
   const [language, setLanguage] = React.useState("dutch");
 
   return (
     <main>
-      <ValidatorProvider>
-        <LanguageProvider language={language}>
-          <Container>
+      <LanguageProvider language={language}>
+        <AppShell header={{ height: 60 }} padding="md">
+          <AppShell.Header>
             <Header setLanguage={setLanguage} />
-            <Listing />
-          </Container>
-        </LanguageProvider>
-      </ValidatorProvider>
+          </AppShell.Header>
+          <AppShell.Main>
+            <Container>
+              <Listing />
+            </Container>
+          </AppShell.Main>
+        </AppShell>
+      </LanguageProvider>
     </main>
   );
 }

@@ -1,8 +1,8 @@
 'use client'
 import React from "react";
 import { LanguageContext } from "./LanguageProvider";
-import { Divider, List, ListItem, ListItemText } from "@mui/material";
 import { ValidatorContext } from "./ValidatorProvider";
+import { Accordion } from "@mantine/core";
 
 
 export const Listing = () => {
@@ -37,30 +37,38 @@ export const Listing = () => {
 
   return (
     <div>
-      <Divider>Outdated Strings ({outdatedKeys.length})</Divider>
-      <List dense={true}>
-        {outdatedKeys.map((key) => (
-          <ListItem key={key}>
-            <ListItemText primary={key} />
-          </ListItem>
-        ))}
-      </List>
-      <Divider>Missing Strings ({missingKeys.length})</Divider>
-      <List dense={true}>
-        {missingKeys.map((key) => (
-          <ListItem key={key}>
-            <ListItemText primary={key} />
-          </ListItem>
-        ))}
-      </List>
-      <Divider>Invalid Strings ({invalidKeys.length})</Divider>
-      <List dense={true}>
-        {invalidKeys.map((key) => (
-          <ListItem key={key}>
-            <ListItemText primary={key} />
-          </ListItem>
-        ))}
-      </List>
+      <Accordion>
+        <Accordion.Item key="outdated-strings" value="Outdated Strings">
+          <Accordion.Control disabled={outdatedKeys.length === 0}>
+            Outdated Strings ({outdatedKeys.length})
+          </Accordion.Control>
+          <Accordion.Panel>
+            {outdatedKeys.map((key) => (
+              <div key={key}>{key}</div>
+            ))}
+          </Accordion.Panel>
+        </Accordion.Item>
+        <Accordion.Item key="missing-strings" value="Missing Strings">
+          <Accordion.Control disabled={missingKeys.length === 0}>
+            Missing Strings ({missingKeys.length})
+          </Accordion.Control>
+          <Accordion.Panel>
+            {missingKeys.map((key) => (
+              <div key={key}>{key}</div>
+            ))}
+          </Accordion.Panel>
+        </Accordion.Item>
+        <Accordion.Item key="invalid-strings" value="Invalid Strings">
+          <Accordion.Control disabled={invalidKeys.length === 0}>
+            Invalid Strings ({invalidKeys.length})
+          </Accordion.Control>
+          <Accordion.Panel>
+            {invalidKeys.map((key) => (
+              <div key={key}>{key}</div>
+            ))}
+          </Accordion.Panel>
+        </Accordion.Item>
+      </Accordion>
     </div>
   );
 }

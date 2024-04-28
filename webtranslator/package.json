@@ -9,12 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@emotion/cache": "^11",
-    "@emotion/react": "^11",
-    "@emotion/styled": "^11",
-    "@mui/icons-material": "^5",
-    "@mui/material": "^5",
-    "@mui/material-nextjs": "^5",
+    "@mantine/core": "^7",
+    "@mantine/hooks": "^7",
+    "@mantine/modals": "^7",
+    "@mantine/notifications": "^7",
+    "@mantine/nprogress": "^7",
+    "@tabler/icons-react": "^3.2.0",
     "next": "^14",
     "react": "^18",
     "react-dom": "^18",
@@ -26,6 +26,9 @@
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "^14",
+    "postcss": "^8",
+    "postcss-preset-mantine": "^1",
+    "postcss-simple-vars": "^7",
     "typescript": "^5"
   }
 }

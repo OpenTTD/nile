@@ -5,6 +5,7 @@ const nextConfig = {
 
   experimental: {
     webpackBuildWorker: true,
+    optimizePackageImports: ['@mantine/core', '@mantine/hooks'],
   },
 
   webpack: (config) => {
