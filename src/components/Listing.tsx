@@ -28,28 +28,32 @@ export const Listing = () => {
   const [invalidKeys, setInvalidKeys] = React.useState<string[] | undefined>(undefined);
 
   React.useEffect(() => {
-    if (language.current.base === undefined || language.current.strings === undefined || validator.validator === undefined) return;
+    if (language.current.language === undefined || language.current.base === undefined || language.current.strings === undefined || validator.validator === undefined) return;
 
-    setOutdatedKeys(Object.keys(language.current.strings).filter(key => language.current.base?.[key].version !== language.current.strings?.[key].version));
+    setOutdatedKeys(Object.keys(language.current.base).filter(key => language.current.strings?.[key] !== undefined && language.current.base?.[key].version !== language.current.strings?.[key].version));
     setMissingKeys(Object.keys(language.current.base).filter(key => language.current.strings?.[key] === undefined));
 
     const languageConfig = {
-      cases: [],
-      genders: [],
-      plural_count: 1,
+      dialect: "openttd",
+      cases: language.languages[language.current.language].case ?? [],
+      genders: language.languages[language.current.language].gender ?? [],
+      plural_count: language.plurals[language.languages[language.current.language].plural].forms.length,
     }
 
     const newInvalidKeys = [];
-    for (const key in language.current.strings) {
+    for (const key in language.current.base) {
       const base = language.current.base[key].cases["default"];
 
-      for (const tcase in language.current.strings[key].cases) {
+      for (const tcase in language.current.strings[key]?.cases) {
         const translation = language.current.strings[key].cases[tcase];
-        if (validator.validator.validate(languageConfig, base, tcase, translation) !== null) {
+
+        const result = validator.validator.validate_translation(languageConfig, base, tcase, translation);
+        if (result.errors.length !== 0) {
           newInvalidKeys.push(key);
         }
       }
     }
+
     setInvalidKeys(newInvalidKeys);
   }, [language, validator]);
 

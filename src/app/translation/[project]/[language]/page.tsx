@@ -12,7 +12,7 @@ export default async function Home({ params }: { params: { project: string, lang
   return (
     <main>
       <ValidatorProvider>
-        <LanguageProvider languages={nileConfig.languages} initialLanguage={language}>
+        <LanguageProvider languages={nileConfig.languages} plurals={nileConfig.plurals} initialLanguage={language}>
           <LayoutCommon>
             <Listing />
           </LayoutCommon>

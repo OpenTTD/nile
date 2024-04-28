@@ -1,11 +1,12 @@
 'use client';
 import React from "react";
 
-import type { init, validate } from "nile-validator";
+import type { init, validate_base, validate_translation } from "@openttd/nile-library";
 
 interface WasmValidator {
   init: typeof init;
-  validate: typeof validate;
+  validate_base: typeof validate_base;
+  validate_translation: typeof validate_translation;
 }
 
 interface Validator {
@@ -18,14 +19,11 @@ export const ValidatorProvider = ({ children } : { children: React.ReactNode }) 
   const [validator, setValidator] = React.useState<Validator>({});
 
   React.useEffect(() => {
-    import("nile-validator").then((newValidator) => {
+    import("@openttd/nile-library").then((newValidator) => {
       newValidator.init();
 
-      setValidator((prev) => {
-        return {
-          ...prev,
-          validator: newValidator,
-        };
+      setValidator({
+        validator: newValidator,
       });
     });
   }, []);

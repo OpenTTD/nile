@@ -1,5 +1,6 @@
 'use client';
 import React from "react";
+import { LanguageInfo, PluralInfo } from "@/static/NileConfig";
 
 interface LanguageEntry {
   cases: Record<string, string>;
@@ -8,6 +9,7 @@ interface LanguageEntry {
 
 interface LanguageData {
   languages: Record<string, LanguageInfo>;
+  plurals: Record<string, PluralInfo>;
   current: {
     language?: string;
     base?: Record<string, LanguageEntry>;
@@ -16,20 +18,18 @@ interface LanguageData {
   changeLanguage: (language: string) => void;
 };
 
-interface LanguageInfo {
-  name: string;
-}
-
 export const LanguageContext = React.createContext<LanguageData>({
   languages: {},
+  plurals: {},
   current: {},
   changeLanguage: () => {},
 });
 
-export const LanguageProvider = ({ languages, initialLanguage, children }: { languages: Record<string, LanguageInfo>, initialLanguage: string, children: React.ReactNode }) => {
+export const LanguageProvider = ({ languages, plurals, initialLanguage, children }: { languages: Record<string, LanguageInfo>, plurals: Record<string, PluralInfo>, initialLanguage: string, children: React.ReactNode }) => {
   const [language, setLanguage] = React.useState(initialLanguage);
   const [languageData, setLanguageData] = React.useState<LanguageData>({
-    languages: languages,
+    languages,
+    plurals,
     current: {
       language,
     },

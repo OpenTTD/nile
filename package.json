@@ -1,22 +1,31 @@
 {
-  "name": "nile",
-  "version": "0.1.0",
-  "private": true,
+  "name": "@openttd/nile",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/OpenTTD"
+  },
+  "version": "0.0.0-git",
+  "description": "Web-based translator for OpenTTD, NewGRFs and GameScripts",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OpenTTD/nile.git"
+  },
+  "author": "OpenTTD <info@openttd.org>",
+  "license": "MIT",
   "dependencies": {
     "@mantine/core": "^7",
     "@mantine/hooks": "^7",
     "@mantine/modals": "^7",
     "@mantine/notifications": "^7",
     "@mantine/nprogress": "^7",
+    "@openttd/nile-library": "^0.2",
     "@tabler/icons-react": "^3",
     "next": "^14",
-    "nile-validator": "file:../nile-validator/pkg",
     "react": "^18",
     "react-dom": "^18"
   },

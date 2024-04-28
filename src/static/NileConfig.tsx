@@ -1,5 +1,5 @@
 
-interface LanguageInfo {
+export interface LanguageInfo {
   name: string;
   ownname: string;
   isocode: string;
@@ -14,14 +14,14 @@ interface LanguageInfo {
   case: string[];
 }
 
-interface ProjectInfo {
+export interface ProjectInfo {
   name: string;
   format: string;
   upstream: string;
   languages: string[];
 }
 
-interface PluralInfo {
+export interface PluralInfo {
   forms: string[];
 }
 
