@@ -4,6 +4,20 @@ import { LanguageContext } from "./LanguageProvider";
 import { ValidatorContext } from "./ValidatorProvider";
 import { Accordion, Box, LoadingOverlay } from "@mantine/core";
 
+const ListingItem = ({ items, id, name } : { items?: string[], id: string, name: string }) => {
+  return (
+    <Accordion.Item value={id}>
+      <Accordion.Control disabled={items?.length === 0}>
+        {name} ({items?.length ?? 0})
+      </Accordion.Control>
+      <Accordion.Panel>
+        {items?.map((item) => (
+          <div key={item}>{item}</div>
+        ))}
+      </Accordion.Panel>
+    </Accordion.Item>
+  )
+}
 
 export const Listing = () => {
   const language = React.useContext(LanguageContext);
@@ -44,36 +58,9 @@ export const Listing = () => {
     <Box pos="relative">
       <LoadingOverlay visible={outdatedKeys === undefined} loaderProps={{ type: "dots" }} />
       <Accordion>
-        <Accordion.Item key="outdated-strings" value="Outdated Strings">
-          <Accordion.Control disabled={outdatedKeys?.length === 0}>
-            Outdated Strings ({outdatedKeys?.length ?? 0})
-          </Accordion.Control>
-          <Accordion.Panel>
-            {outdatedKeys?.map((key) => (
-              <div key={key}>{key}</div>
-            ))}
-          </Accordion.Panel>
-        </Accordion.Item>
-        <Accordion.Item key="missing-strings" value="Missing Strings">
-          <Accordion.Control disabled={missingKeys?.length === 0}>
-            Missing Strings ({missingKeys?.length ?? 0})
-          </Accordion.Control>
-          <Accordion.Panel>
-            {missingKeys?.map((key) => (
-              <div key={key}>{key}</div>
-            ))}
-          </Accordion.Panel>
-        </Accordion.Item>
-        <Accordion.Item key="invalid-strings" value="Invalid Strings">
-          <Accordion.Control disabled={invalidKeys?.length === 0}>
-            Invalid Strings ({invalidKeys?.length ?? 0})
-          </Accordion.Control>
-          <Accordion.Panel>
-            {invalidKeys?.map((key) => (
-              <div key={key}>{key}</div>
-            ))}
-          </Accordion.Panel>
-        </Accordion.Item>
+        <ListingItem items={outdatedKeys} id="outdated-strings" name="Outdated Strings" />
+        <ListingItem items={missingKeys} id="missing-strings" name="Missing Strings" />
+        <ListingItem items={invalidKeys} id="invalid-strings" name="Invalid Strings" />
       </Accordion>
     </Box>
   );
