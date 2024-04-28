@@ -1,14 +1,15 @@
 'use client'
 import clsx from "clsx";
 import React from "react";
+import Link from 'next/link';
 import { Anchor, Box, Group, LoadingOverlay, NavLink, Table, Text, rem } from "@mantine/core";
-import { LanguageContext } from "@/providers/LanguageProvider";
-import { ValidatorContext } from "@/providers/ValidatorProvider";
-import { LayoutCommon } from "@/components/LayoutCommon";
-import { useIntersection } from "@mantine/hooks";
-import classes from './Listing.module.css';
 import { IconListSearch } from "@tabler/icons-react";
+import { LanguageContext } from "@/providers/LanguageProvider";
+import { LayoutCommon } from "@/components/LayoutCommon";
 import { ProjectContext } from "@/providers/ProjectProvider";
+import { useIntersection } from "@mantine/hooks";
+import { ValidatorContext } from "@/providers/ValidatorProvider";
+import classes from './Listing.module.css';
 
 const NavigationItem = ({ id, name, entries }: { id: string, name: string, entries: (IntersectionObserverEntry | null)[] }) => {
   /* Check if only the last entry is intersecting (and no other). */
@@ -50,7 +51,7 @@ const ListingItemRef = ({ items, id, name }: { items?: string[], id: string, nam
         {length !== 0 && <Table.Tbody>
           {items?.map((key) => (
             <Table.Tr key={key}>
-              <Table.Td><Anchor size="sm" component="a" href={`/string/${project.project}/${language.language}?id=${key}`}>{key}</Anchor></Table.Td>
+              <Table.Td><Anchor size="sm" component={Link} href={`/string/${project.project}/${language.language}?id=${key}`}>{key}</Anchor></Table.Td>
             </Table.Tr>
           ))}
         </Table.Tbody>}

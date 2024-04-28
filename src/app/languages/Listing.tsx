@@ -1,5 +1,6 @@
 'use client'
 import React from "react";
+import Link from 'next/link';
 import { Anchor, Box, Table } from "@mantine/core";
 import { ConfigContext } from "@/providers/ConfigProvider";
 
@@ -19,7 +20,7 @@ export const Listing = () => {
         <Table.Tbody>
           {Object.keys(config.languages).map((key) => (
             <Table.Tr key={key}>
-              <Table.Td><Anchor size="sm" component="a" href={`/language/${key}`}>{key}</Anchor></Table.Td>
+              <Table.Td><Anchor size="sm" component={Link} href={`/language/${key}`}>{key}</Anchor></Table.Td>
               <Table.Td>{config.languages[key].name}</Table.Td>
               <Table.Td>{config.languages[key].ownname}</Table.Td>
             </Table.Tr>

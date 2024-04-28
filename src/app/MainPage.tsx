@@ -1,5 +1,6 @@
 'use client'
 import React from "react";
+import Link from "next/link";
 import { Button, Group, List, Text, ThemeIcon, Title, rem } from "@mantine/core";
 import { IconCheck } from "@tabler/icons-react";
 
@@ -39,7 +40,7 @@ export const MainPage = () => {
           <Button radius="xl" size="md">
             Get started
           </Button>
-          <Button variant="default" radius="xl" size="md" component="a" href="/languages">
+          <Button variant="default" radius="xl" size="md" component={Link} href="/languages">
             Supported languages
           </Button>
         </Group>
