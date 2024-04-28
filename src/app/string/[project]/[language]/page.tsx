@@ -5,6 +5,7 @@ import { ValidatorProvider } from "@/providers/ValidatorProvider";
 import { ConfigProvider } from "@/providers/ConfigProvider";
 import { ProjectProvider } from "@/providers/ProjectProvider";
 import { Listing } from "./Listing";
+import { LayoutCommon } from "@/components/LayoutCommon";
 
 export default async function Home({ params }: { params: { project: string, language: string } }) {
   const { project, language } = params;
@@ -16,7 +17,9 @@ export default async function Home({ params }: { params: { project: string, lang
         <ConfigProvider config={nileConfig}>
           <ProjectProvider initialProject={project}>
             <LanguageProvider initialLanguage={language}>
-              <Listing />
+              <LayoutCommon>
+                <Listing />
+              </LayoutCommon>
             </LanguageProvider>
           </ProjectProvider>
         </ConfigProvider>

@@ -25,6 +25,7 @@
     "@mantine/nprogress": "^7",
     "@openttd/nile-library": "^0.2",
     "@tabler/icons-react": "^3",
+    "clsx": "^2",
     "next": "^14",
     "react": "^18",
     "react-dom": "^18"

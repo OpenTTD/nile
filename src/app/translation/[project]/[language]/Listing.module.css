@@ -1,0 +1,7 @@
+.navlink {
+    border-left: 1px solid var(--mantine-color-dark-4);
+}
+
+.navlinkActive {
+    border-left-color: var(--mantine-color-blue-4);
+}

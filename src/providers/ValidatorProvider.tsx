@@ -1,12 +1,32 @@
 'use client';
 import React from "react";
 
-import type { init, validate_base, validate_translation } from "@openttd/nile-library";
+import type { init, validate_base } from "@openttd/nile-library";
+
+export interface LanguageConfig {
+  dialect: string;
+  cases: string[];
+  genders: string[];
+  plural_count: number;
+}
+
+interface ValidationError {
+  severity: string;
+  pos_begin?: number;
+  pos_end?: number;
+  message: string;
+  suggestion?: string;
+}
+
+interface ValidationResult {
+  errors: ValidationError[];
+  normalized?: string;
+}
 
 interface WasmValidator {
   init: typeof init;
   validate_base: typeof validate_base;
-  validate_translation: typeof validate_translation;
+  validate_translation: (js_config: LanguageConfig, base: string, _case: string, translation: string) => ValidationResult;
 }
 
 interface Validator {
