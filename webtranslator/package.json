@@ -17,7 +17,8 @@
     "@mui/material-nextjs": "^5",
     "next": "^14",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "validator": "file:../validator/pkg"
   },
   "devDependencies": {
     "@types/node": "^20",
