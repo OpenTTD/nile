@@ -28,7 +28,6 @@ export const Listing = () => {
   const [invalidKeys, setInvalidKeys] = React.useState<string[] | undefined>(undefined);
 
   React.useEffect(() => {
-    console.log(validator);
     if (language.current.base === undefined || language.current.strings === undefined || validator.validator === undefined) return;
 
     setOutdatedKeys(Object.keys(language.current.strings).filter(key => language.current.base?.[key].version !== language.current.strings?.[key].version));
