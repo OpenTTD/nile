@@ -1,3 +1,4 @@
+'use client';
 import React from "react";
 
 import type { init, validate } from "nile-validator";
@@ -8,7 +9,6 @@ interface WasmValidator {
 }
 
 interface Validator {
-  loaded?: boolean;
   validator?: WasmValidator;
 }
 
@@ -25,7 +25,6 @@ export const ValidatorProvider = ({ children } : { children: React.ReactNode }) 
         return {
           ...prev,
           validator: newValidator,
-          loaded: true,
         };
       });
     });

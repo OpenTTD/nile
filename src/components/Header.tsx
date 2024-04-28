@@ -30,7 +30,7 @@ export const Header = () => {
           </Menu.Target>
           <Menu.Dropdown>
             {Object.keys(language.languages ?? {}).map((key) => (
-              <Menu.Item key={key} onClick={() => language.changeLanguage(key)}>{language.languages?.[key]?.name ?? ""}</Menu.Item>
+              <Menu.Item key={key} component="a" href={`/translation/openttd-vanilla/${key}`}>{language.languages?.[key]?.name ?? ""}</Menu.Item>
             ))}
           </Menu.Dropdown>
         </Menu>

@@ -26,8 +26,8 @@ export const LanguageContext = React.createContext<LanguageData>({
   changeLanguage: () => {},
 });
 
-export const LanguageProvider = ({ languages, children }: { languages: Record<string, LanguageInfo>, children: React.ReactNode }) => {
-  const [language, setLanguage] = React.useState("nl_NL");
+export const LanguageProvider = ({ languages, initialLanguage, children }: { languages: Record<string, LanguageInfo>, initialLanguage: string, children: React.ReactNode }) => {
+  const [language, setLanguage] = React.useState(initialLanguage);
   const [languageData, setLanguageData] = React.useState<LanguageData>({
     languages: languages,
     current: {},
@@ -39,8 +39,8 @@ export const LanguageProvider = ({ languages, children }: { languages: Record<st
       ...prev,
       current: {
         language: language,
-        base: {},
-        strings: {},
+        base: undefined,
+        strings: undefined,
       },
     }));
 
