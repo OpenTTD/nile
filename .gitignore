@@ -1,1 +1,5 @@
-data
+/dist
+/node_modules
+/.next
+/next-env.d.ts
+/public/*.json
