@@ -1,5 +1,6 @@
 'use client'
 import React from "react";
+import Link from "next/link";
 import { Breadcrumbs, Button, Menu } from "@mantine/core";
 import { IconChevronDown } from "@tabler/icons-react";
 import { usePathname } from "next/navigation";
@@ -18,22 +19,22 @@ export const Header = () => {
   return (
     <>
       <Breadcrumbs h="100%" px="md">
-        <Button component="a" variant="subtle" radius="xl" size="xs" href="/">Home</Button>
+        <Button component={Link} variant="subtle" radius="xl" size="xs" href="/">Home</Button>
 
         {pathname.startsWith("/languages") && (
-          <Button component="a" variant="subtle" radius="xl" size="xs" href="/languages">
+          <Button component={Link} variant="subtle" radius="xl" size="xs" href="/languages">
             Languages
           </Button>
         )}
 
         {pathname.startsWith("/projects") && (
-          <Button component="a" variant="subtle" radius="xl" size="xs" href="/projects">
+          <Button component={Link} variant="subtle" radius="xl" size="xs" href="/projects">
             Projects
           </Button>
         )}
 
         {pathname.startsWith("/language/") && (
-          <Button component="a" variant="subtle" radius="xl" size="xs" href={`/language/${language.language}`}>
+          <Button component={Link} variant="subtle" radius="xl" size="xs" href={`/language/${language.language}`}>
             All Projects
           </Button>
         )}
@@ -46,11 +47,11 @@ export const Header = () => {
               </Button>
             </Menu.Target>
             <Menu.Dropdown>
-              <Menu.Item component="a" href={`/languages`}>
+              <Menu.Item component={Link} href={`/languages`}>
                 All languages
               </Menu.Item>
               {Object.keys(config.languages ?? {}).map((key) => (
-                <Menu.Item key={key} component="a" href={`/language/${key}`}>
+                <Menu.Item key={key} component={Link} href={`/language/${key}`}>
                   {config.languages?.[key]?.name ?? ""} ({key})
                 </Menu.Item>
               ))}
@@ -66,11 +67,11 @@ export const Header = () => {
               </Button>
             </Menu.Target>
             <Menu.Dropdown>
-              <Menu.Item component="a" href={`/projects`}>
+              <Menu.Item component={Link} href={`/projects`}>
                 All projects
               </Menu.Item>
               {Object.keys(config.projects ?? {}).map((key) => (
-                <Menu.Item key={key} component="a" href={`/project/${key}`}>
+                <Menu.Item key={key} component={Link} href={`/project/${key}`}>
                   {config.projects?.[key]?.name ?? ""}
                 </Menu.Item>
               ))}
@@ -79,7 +80,7 @@ export const Header = () => {
         )}
 
         {pathname.startsWith("/project/") && (
-          <Button component="a" variant="subtle" radius="xl" size="xs" href={`/project/${project.project}`}>
+          <Button component={Link} variant="subtle" radius="xl" size="xs" href={`/project/${project.project}`}>
             All languages
           </Button>
         )}
@@ -92,11 +93,11 @@ export const Header = () => {
               </Button>
             </Menu.Target>
             <Menu.Dropdown>
-              <Menu.Item component="a" href={`/language/${language.language}`}>
+              <Menu.Item component={Link} href={`/language/${language.language}`}>
                 All projects
               </Menu.Item>
               {Object.keys(config.projects ?? {}).map((key) => (
-                <Menu.Item key={key} component="a" href={`/translation/${key}/${language.language}`}>
+                <Menu.Item key={key} component={Link} href={`/translation/${key}/${language.language}`}>
                   {config.projects?.[key]?.name ?? ""}
                 </Menu.Item>
               ))}
@@ -112,11 +113,11 @@ export const Header = () => {
               </Button>
             </Menu.Target>
             <Menu.Dropdown>
-              <Menu.Item component="a" href={`/project/${project.project}`}>
+              <Menu.Item component={Link} href={`/project/${project.project}`}>
                 All languages
               </Menu.Item>
               {Object.keys(config.languages ?? {}).map((key) => (
-                <Menu.Item key={key} component="a" href={`/translation/${project.project}/${key}`}>
+                <Menu.Item key={key} component={Link} href={`/translation/${project.project}/${key}`}>
                   {config.languages?.[key]?.name ?? ""} ({key})
                 </Menu.Item>
               ))}
@@ -125,7 +126,7 @@ export const Header = () => {
         )}
 
         {pathname.startsWith("/string/") && (
-          <Button component="a" variant="subtle" radius="xl" size="xs" href={`/translation/${project.project}/${language.language}`}>
+          <Button component={Link} variant="subtle" radius="xl" size="xs" href={`/translation/${project.project}/${language.language}`}>
             Strings
           </Button>
         )}
